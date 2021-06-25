@@ -18,10 +18,25 @@ let startButtonHandler = function(event) {
     for (i = 0; i < questions.length; i++) {
       console.log(questions[i][0]);
 
+      // h1 - create, assign text, append
+      let questionsH1 = document.createElement(`h1`);
+      questionsH1.textContent = questions[i][0];
+      document.body.append(questionsH1);
+
+      // ol - create, append
+      let questionsOl = document.createElement(`ol`);
+      document.body.append(questionsOl);
+
       for (j = 0; j < questions[i][1].length; j++) {
         console.log(questions[i][1][j]);
+        
+        // li - create, assign, append (how do I convert these to buttons that look like the mock-up?)
+        let questionsLi = document.createElement(`li`);
+        questionsLi.textContent = questions[i][1][j];
+        questionsOl.append(questionsLi);
       }
     }
+    // listen for button click
   }
 }
 
