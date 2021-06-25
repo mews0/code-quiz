@@ -42,4 +42,8 @@ let questions = function() {
   }
 }
 
+// End
+
+// High score
+
 startQuiz();
