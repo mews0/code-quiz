@@ -6,4 +6,10 @@ const questions = [
   [`A very useful tool used during development and debugging for printing content to the debugger is:`, [`JavaScript`, `terminal/bash`, `for loops`, `console.log`]]
 ];
 
- 
+for (i = 0; i < questions.length; i++) {
+  console.log(questions[i][0]);
+
+  for (j = 0; j < questions[i][1].length; j++) {
+    console.log(questions[i][1][j]);
+  }
+}
