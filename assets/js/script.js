@@ -33,6 +33,7 @@ let startButtonHandler = function(event) {
         // li - create, assign, append (how do I convert these to buttons that look like the mock-up?)
         let questionsLi = document.createElement(`li`);
         questionsLi.textContent = questions[i][1][j];
+        questionsLi.innerHTML = `<button>` + questions[i][1][j] + `</button>`;
         questionsOl.append(questionsLi);
       }
     }
