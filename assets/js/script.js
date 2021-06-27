@@ -36,7 +36,7 @@ let takeQuiz = function() {
       // li - create, assign, append (how do I convert these to buttons that look like the mock-up?)
       let questionLi = document.createElement(`li`);
       questionLi.textContent = question[i][1][j];
-      questionLi.innerHTML = `<button>` + question[i][1][j] + `</button>`;
+      questionLi.innerHTML = `<button class=btn-` + question[i][2][j].toString() + `>` + question[i][1][j] + `</button>`;
       questionOl.append(questionLi);
     }
   }
