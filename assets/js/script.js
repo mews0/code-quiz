@@ -4,14 +4,14 @@ let startQuiz = function() {
   let startButtonHandler = function(event) {
     let startTarget = event.target;
     if (startTarget.matches(`.start button`)) {
-      question();
+      takeQuiz();
     }
   }
   startButton.addEventListener("click", startButtonHandler);
 }
 
 // Questions
-let question = function() {
+let takeQuiz = function() {
   const question = [
     [`Commonly used data types do not include:`, [`strings`, `booleans`, `alerts`, `numbers`]], 
     [`The condition in an if/else statement is enclosed with __________.`, [`quotes`, `curly brackets`, `parenthesis`, `square brackets`]], 
