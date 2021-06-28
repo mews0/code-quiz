@@ -9,9 +9,30 @@ const quiz = [
 ];
 
 let quizStart = function() {
+  // Display start quiz screen
+  let quizStartSection = document.createElement(`section`);
+  quizStartSection.className = `quiz-start`;
+  document.body.append(quizStartSection);
+  
+  let quizStartH1 = document.createElement(`h1`);
+  quizStartH1.textContent = `Coding Quiz Challenge`;
+  quizStartSection.append(quizStartH1);
+
+  let quizStartP = document.createElement(`p`);
+  quizStartP.textContent = `Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!`;
+  quizStartSection.append(quizStartP);
+
+  let quizStartButton = document.createElement(`button`);
+  quizStartButton.textContent = `Start Quiz!`;
+  quizStartButton.id = `quiz-start`;
+  quizStartSection.append(quizStartButton);
+
   // Listen for user click of start quiz button
   document.querySelector(`#quiz-start`).addEventListener(`click`, function(event) {
     if (event.target.id === `quiz-start`) {
+
+      // Clear start quiz screen
+      quizStartSection.innerHTML = ``;
       
       // Start timer
       let timer = setInterval(
