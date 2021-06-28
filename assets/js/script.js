@@ -24,8 +24,7 @@ for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
     // console.log(quiz[questionIndex][1][answerIndex]);
 
     let quizLi = document.createElement(`li`);
-    quizLi.innerHTML = `<button>` + quiz[questionIndex][1][answerIndex] + `</button>`;
-    quizLi.className = `answer-` + quiz[questionIndex][2][answerIndex].toString();
+    quizLi.innerHTML = `<button class=answer-` + quiz[questionIndex][2][answerIndex].toString() + `>` + quiz[questionIndex][1][answerIndex] + `</button>`;
     quizOl.append(quizLi);
     
     // console.log(quizLi);
