@@ -6,8 +6,8 @@ const quiz = [
   [`A very useful tool used during development and debugging for printing content to the debugger is:`, [`JavaScript`, `terminal/bash`, `for loops`, `console.log`], [false, false, false, true]]
 ];
 
+let timeLeft = 75;
 let quizTimer = function() {
-  let timeLeft = 75;
   let timer = setInterval(
     function(){
       timeLeft--;
