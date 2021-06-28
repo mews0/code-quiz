@@ -7,24 +7,27 @@ const quiz = [
 ];
  
 for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
-  console.log(quiz[questionIndex][0]);
+  // console.log(quiz[questionIndex][0]);
   
   let quizH1 = document.createElement(`h1`);  
   quizH1.textContent = quiz[questionIndex][0];
+  document.body.append(quizH1);
 
   let quizOl = document.createElement(`ol`);
   quizOl.className = `question-index` + `-` + questionIndex;
+  document.body.append(quizOl);
 
-  console.log(quizH1);
-  console.log(quizOl);
+  // console.log(quizH1);
+  // console.log(quizOl);
   
   for (answerIndex = 0; answerIndex < quiz[questionIndex][1].length; answerIndex++) {
-    console.log(quiz[questionIndex][1][answerIndex]);
+    // console.log(quiz[questionIndex][1][answerIndex]);
 
     let quizLi = document.createElement(`li`);
     quizLi.innerHTML = `<button>` + quiz[questionIndex][1][answerIndex] + `</button>`;
     quizLi.className = `answer-` + quiz[questionIndex][2][answerIndex].toString();
+    quizOl.append(quizLi);
     
-    console.log(quizLi);
+    // console.log(quizLi);
   }
 }
