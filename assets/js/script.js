@@ -8,18 +8,29 @@ const quiz = [
   [`A very useful tool used during development and debugging for printing content to the debugger is:`, [`JavaScript`, `terminal/bash`, `for loops`, `console.log`], [false, false, false, true]]
 ];
 
-let quizTimer = function() {
-  let timer = setInterval(
-    function(){
-      timeLeft--;
-      console.log(timeLeft);
-      if (timeLeft <= 0 || questionIndex === quiz.length) {
-        clearInterval(timer, 1000);
-        alert(`All done!`)
-      }   
-    },
-    1000
-  )
+let quizStart = function() {
+  // Listen for user click of start quiz button
+  document.querySelector(`#quiz-start`).addEventListener(`click`, function(event) {
+    if (event.target.id === `quiz-start`) {
+      
+      // Start timer
+      let timer = setInterval(
+        function(){
+          timeLeft--;
+          console.log(timeLeft);
+          if (timeLeft <= 0 || questionIndex === quiz.length) {
+            clearInterval(timer, 1000);
+            alert(`All done!`)
+          }   
+        },
+        1000
+      )
+
+      // Begin quiz
+      quizDisplay();
+
+    }
+  });
 }
 
 let quizDisplay = function() {
@@ -60,5 +71,4 @@ let quizDisplay = function() {
   }
 }
 
-quizTimer();
-quizDisplay();
+quizStart();
