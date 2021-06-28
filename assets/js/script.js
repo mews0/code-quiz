@@ -16,13 +16,21 @@ for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
   let quizOl = document.createElement(`ol`);
   quizOl.id = `answer-index-` + questionIndex;
   document.body.append(quizOl);
-
+  
   for (answerIndex = 0; answerIndex < quiz[questionIndex][1].length; answerIndex++) {
 
     let quizLi = document.createElement(`li`);
     quizLi.innerHTML = `<button class=answer-` + quiz[questionIndex][2][answerIndex].toString() + `>` + quiz[questionIndex][1][answerIndex] + `</button>`;
     quizOl.append(quizLi);
-    
+      
   }
 
+  document.querySelector(`#answer-index-` + questionIndex).addEventListener(`click`, function(event) {
+    if (event.target.className === `answer-true`) {
+      console.log(`Correct!`);
+    };
+    if (event.target.className === `answer-false`) {
+      console.log(`Wrong!`);
+    }
+  }); 
 }
