@@ -6,29 +6,31 @@ const quiz = [
   [`A very useful tool used during development and debugging for printing content to the debugger is:`, [`JavaScript`, `terminal/bash`, `for loops`, `console.log`], [false, false, false, true]]
 ];
 
-let timeLeft = 75;
-let quizTimer = function() {
-  let timer = setInterval(
-    function(){
-      timeLeft--;
-      console.log(timeLeft);
-      if (timeLeft <= 0) {  // OR all questions are answered
-        clearInterval(timer, 1000);
-        alert(`Time is up!`)
-      }    
-    },
-    1000
-  )
-}
+// let timeLeft = 75;
+// let quizTimer = function() {
+//   let timer = setInterval(
+//     function(){
+//       timeLeft--;
+//       console.log(timeLeft);
+//       if (timeLeft <= 0) {  // OR all questions are answered
+//         clearInterval(timer, 1000);
+//         alert(`Time is up!`)
+//       }    
+//     },
+//     1000
+//   )
+// }
 
 let answerButtonHandler = function() {
   document.querySelector(`#answer-index-` + questionIndex).addEventListener(`click`, function(event) {
     if (event.target.className === `answer-true`) {
       alert(`Correct!`);
+      questionIndex++;
     };
     if (event.target.className === `answer-false`) {
       alert(`Wrong!`);
       timeLeft -= 10;
+      questionIndex++;
     }
   });
 }
@@ -53,6 +55,7 @@ let quizDisplay = function(answerButtonHandler) {
     }
 
     answerButtonHandler();
+    console.log(questionIndex);
     // If a button was clicked, then add 1 to questionIndex and call quizDisplay 
   }
 }
