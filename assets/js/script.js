@@ -33,8 +33,9 @@ let answerButtonHandler = function() {
   });
 }
 
+let questionIndex = 0;
 let quizDisplay = function(answerButtonHandler) {
-  for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
+  if (questionIndex < quiz.length) {
     
     let quizH1 = document.createElement(`h1`);  
     quizH1.textContent = quiz[questionIndex][0];
@@ -52,6 +53,7 @@ let quizDisplay = function(answerButtonHandler) {
     }
 
     answerButtonHandler();
+    // If a button was clicked, then add 1 to questionIndex and call quizDisplay 
   }
 }
 
