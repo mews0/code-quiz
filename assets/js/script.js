@@ -6,36 +6,22 @@ const quiz = [
   [`A very useful tool used during development and debugging for printing content to the debugger is:`, [`JavaScript`, `terminal/bash`, `for loops`, `console.log`], [false, false, false, true]]
 ];
 
-let timeLeft = 75;
-let timer = setInterval(
-  function(){
-    timeLeft--;
-    console.log(timeLeft);
-    if (timeLeft <= 0) {
-      clearInterval(timer, 1000);
-      alert(`Time is up!`)
-    }    
-  },
-  1000
-)
+let quizTimer = function() {
+  let timeLeft = 75;
+  let timer = setInterval(
+    function(){
+      timeLeft--;
+      console.log(timeLeft);
+      if (timeLeft <= 0) {  // OR all questions are answered
+        clearInterval(timer, 1000);
+        alert(`Time is up!`)
+      }    
+    },
+    1000
+  )
+}
 
-for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
-  
-  let quizH1 = document.createElement(`h1`);  
-  quizH1.textContent = quiz[questionIndex][0];
-  quizH1.id = `question-index-` + questionIndex;
-  document.body.append(quizH1);
-
-  let quizOl = document.createElement(`ol`);
-  quizOl.id = `answer-index-` + questionIndex;
-  document.body.append(quizOl);
-  
-  for (answerIndex = 0; answerIndex < quiz[questionIndex][1].length; answerIndex++) {
-    let quizLi = document.createElement(`li`);
-    quizLi.innerHTML = `<button class=answer-` + quiz[questionIndex][2][answerIndex].toString() + `>` + quiz[questionIndex][1][answerIndex] + `</button>`;
-    quizOl.append(quizLi);      
-  }
-
+let answerButtonHandler = function() {
   document.querySelector(`#answer-index-` + questionIndex).addEventListener(`click`, function(event) {
     if (event.target.className === `answer-true`) {
       alert(`Correct!`);
@@ -44,5 +30,30 @@ for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
       alert(`Wrong!`);
       timeLeft -= 10;
     }
-  }); 
+  });
 }
+
+let quizDisplay = function(answerButtonHandler) {
+  for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
+    
+    let quizH1 = document.createElement(`h1`);  
+    quizH1.textContent = quiz[questionIndex][0];
+    quizH1.id = `question-index-` + questionIndex;
+    document.body.append(quizH1);
+
+    let quizOl = document.createElement(`ol`);
+    quizOl.id = `answer-index-` + questionIndex;
+    document.body.append(quizOl);
+    
+    for (answerIndex = 0; answerIndex < quiz[questionIndex][1].length; answerIndex++) {
+      let quizLi = document.createElement(`li`);
+      quizLi.innerHTML = `<button class=answer-` + quiz[questionIndex][2][answerIndex].toString() + `>` + quiz[questionIndex][1][answerIndex] + `</button>`;
+      quizOl.append(quizLi);      
+    }
+
+    answerButtonHandler();
+  }
+}
+
+quizTimer();
+quizDisplay(answerButtonHandler);
