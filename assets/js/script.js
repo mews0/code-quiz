@@ -44,12 +44,16 @@ let quizDisplay = function() {
       if (event.target.className === `answer-true`) {
         alert(`Correct!`);
         questionIndex++;
+        quizH1.innerHTML = ``;
+        quizOl.innerHTML = ``;
         quizDisplay();
       }
       if (event.target.className === `answer-false`) {
         alert(`Wrong!`);
         timeLeft -= 10;
         questionIndex++;
+        quizH1.innerHTML = ``;
+        quizOl.innerHTML = ``;
         quizDisplay();
       }
     }); 
