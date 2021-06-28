@@ -5,6 +5,14 @@ const quiz = [
   [`String values must be enclosed within __________ when being assigned to variables.`, [`commas`, `curly brackets`, `quotes`, `parenthesis`], [false, false, true, false]], 
   [`A very useful tool used during development and debugging for printing content to the debugger is:`, [`JavaScript`, `terminal/bash`, `for loops`, `console.log`], [false, false, false, true]]
 ];
+
+let timeLeft = 75;
+let timer = function() {
+  timeLeft--;
+  console.log(timeLeft);
+}
+setInterval(timer, 1000);
+
  
 for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
   
@@ -18,19 +26,18 @@ for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
   document.body.append(quizOl);
   
   for (answerIndex = 0; answerIndex < quiz[questionIndex][1].length; answerIndex++) {
-
     let quizLi = document.createElement(`li`);
     quizLi.innerHTML = `<button class=answer-` + quiz[questionIndex][2][answerIndex].toString() + `>` + quiz[questionIndex][1][answerIndex] + `</button>`;
-    quizOl.append(quizLi);
-      
+    quizOl.append(quizLi);      
   }
 
   document.querySelector(`#answer-index-` + questionIndex).addEventListener(`click`, function(event) {
     if (event.target.className === `answer-true`) {
-      console.log(`Correct!`);
+      alert(`Correct!`);
     };
     if (event.target.className === `answer-false`) {
-      console.log(`Wrong!`);
+      alert(`Wrong!`);
+      timeLeft -= 10;
     }
   }); 
 }
