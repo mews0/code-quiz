@@ -7,13 +7,18 @@ const quiz = [
 ];
 
 let timeLeft = 75;
-let timer = function() {
-  timeLeft--;
-  console.log(timeLeft);
-}
-setInterval(timer, 1000);
+let timer = setInterval(
+  function(){
+    timeLeft--;
+    console.log(timeLeft);
+    if (timeLeft <= 0) {
+      clearInterval(timer, 1000);
+      alert(`Time is up!`)
+    }    
+  },
+  1000
+)
 
- 
 for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
   
   let quizH1 = document.createElement(`h1`);  
