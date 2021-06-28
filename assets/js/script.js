@@ -1,3 +1,5 @@
+let timeLeft = 75;
+let questionIndex = 0;
 const quiz = [
   [`Commonly used data types do not include:`, [`strings`, `booleans`, `alerts`, `numbers`], [false, false, true, false]], 
   [`The condition in an if/else statement is enclosed with __________.`, [`quotes`, `curly brackets`, `parenthesis`, `square brackets`], [false, false, true, false]], 
@@ -6,11 +8,11 @@ const quiz = [
   [`A very useful tool used during development and debugging for printing content to the debugger is:`, [`JavaScript`, `terminal/bash`, `for loops`, `console.log`], [false, false, false, true]]
 ];
 
-let timeLeft = 75;
 let quizTimer = function() {
   let timer = setInterval(
     function(){
       timeLeft--;
+      console.log(timeLeft);
       if (timeLeft <= 0) {  // OR all questions are answered
         clearInterval(timer, 1000);
         alert(`Time is up!`)
@@ -20,22 +22,7 @@ let quizTimer = function() {
   )
 }
 
-let answerButtonHandler = function() {
-  document.querySelector(`#answer-index-` + questionIndex).addEventListener(`click`, function(event) {
-    if (event.target.className === `answer-true`) {
-      alert(`Correct!`);
-      questionIndex++;
-    };
-    if (event.target.className === `answer-false`) {
-      alert(`Wrong!`);
-      timeLeft -= 10;
-      questionIndex++;
-    }
-  });
-}
-
-let questionIndex = 0;
-let quizDisplay = function(answerButtonHandler) {
+let quizDisplay = function() {
   if (questionIndex < quiz.length) {
     
     let quizH1 = document.createElement(`h1`);  
@@ -53,11 +40,21 @@ let quizDisplay = function(answerButtonHandler) {
       quizOl.append(quizLi);      
     }
 
-    answerButtonHandler();
-    console.log(questionIndex);
-    // If a button was clicked, then add 1 to questionIndex and call quizDisplay 
+    document.querySelector(`#answer-index-` + questionIndex).addEventListener(`click`, function(event) {
+      if (event.target.className === `answer-true`) {
+        alert(`Correct!`);
+        questionIndex++;
+        quizDisplay();
+      }
+      if (event.target.className === `answer-false`) {
+        alert(`Wrong!`);
+        timeLeft -= 10;
+        questionIndex++;
+        quizDisplay();
+      }
+    }); 
   }
 }
 
 quizTimer();
-quizDisplay(answerButtonHandler);
+quizDisplay();
