@@ -10,11 +10,11 @@ for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
   
   let quizH1 = document.createElement(`h1`);  
   quizH1.textContent = quiz[questionIndex][0];
-  quizH1.className = `question-index-` + questionIndex;
+  quizH1.id = `question-index-` + questionIndex;
   document.body.append(quizH1);
 
   let quizOl = document.createElement(`ol`);
-  quizOl.className = `question-index-` + questionIndex;
+  quizOl.id = `answer-index-` + questionIndex;
   document.body.append(quizOl);
 
   for (answerIndex = 0; answerIndex < quiz[questionIndex][1].length; answerIndex++) {
@@ -24,4 +24,5 @@ for (questionIndex = 0; questionIndex < quiz.length; questionIndex++) {
     quizOl.append(quizLi);
     
   }
+
 }
