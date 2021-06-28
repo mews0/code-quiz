@@ -13,10 +13,10 @@ let quizTimer = function() {
     function(){
       timeLeft--;
       console.log(timeLeft);
-      if (timeLeft <= 0) {  // OR all questions are answered
+      if (timeLeft <= 0 || questionIndex === quiz.length) {
         clearInterval(timer, 1000);
-        alert(`Time is up!`)
-      }    
+        alert(`All done!`)
+      }   
     },
     1000
   )
