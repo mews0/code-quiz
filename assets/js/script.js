@@ -1,13 +1,17 @@
 let quizScore = {
   current: 0,
   initials: ``,
-  // high score (in localStorage)
+  high: localStorage.getItem(`high-score`),
   calculate: function() {
     this.current = this.current - (75 - timeLeft);
     return this.current;
-    /* if (this.current > this.high) {
+  },
+  compare: function() {
+    if (this.current > this.high || !this.high) {
       this.high = this.current;
-    } */
+      localStorage.setItem(`high-score`, this.current);
+    }
+    return this.high;
   }
 }
 let timeLeft = 75;
@@ -51,11 +55,17 @@ let quizStart = function() {
         function(){
           timeLeft--;
           console.log(timeLeft);
+
+          // End of quiz
           if (timeLeft <= 0 || questionIndex === quiz.length) {
             clearInterval(timer, 1000);
-            alert(`All done! Your final score is ${quizScore.calculate()}`);
+            alert(`All done! Your final score is ${quizScore.calculate()}.`);
             quizScore.initials = prompt(`Enter initials:`);
-          }   
+
+            // Display high score
+            alert(`High score is ${quizScore.compare()}.`);
+          }
+          
         },
         1000
       )
