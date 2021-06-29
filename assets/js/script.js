@@ -1,13 +1,12 @@
 let quizScore = {
   current: 0,
-  initials: ``,
   high: localStorage.getItem(`high-score`),
   calculate: function() {
     this.current = this.current - (75 - timeLeft);
     return this.current;
   },
   compare: function() {
-    if (this.current > this.high || !this.high) {
+    if (this.current >= this.high || !this.high) {
       this.high = this.current;
       localStorage.setItem(`high-score`, this.current);
     }
@@ -38,6 +37,8 @@ let quizStart = function() {
   quizStartP.textContent = `Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!`;
   quizStartSection.append(quizStartP);
 
+  console.log(`High score is ${quizScore.compare()}.`);
+
   let quizStartButton = document.createElement(`button`);
   quizStartButton.textContent = `Start Quiz!`;
   quizStartButton.id = `quiz-start`;
@@ -60,7 +61,6 @@ let quizStart = function() {
           if (timeLeft <= 0 || questionIndex === quiz.length) {
             clearInterval(timer, 1000);
             alert(`All done! Your final score is ${quizScore.calculate()}.`);
-            quizScore.initials = prompt(`Enter initials:`);
 
             // Display high score
             alert(`High score is ${quizScore.compare()}.`);
