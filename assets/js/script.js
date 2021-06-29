@@ -47,14 +47,14 @@ let quizStart = function() {
         1000
       )
 
-      // Begin quiz
-      quizDisplay();
+      // Begin quiz questions
+      quizQuestions();
 
     }
   });
 }
 
-let quizDisplay = function() {
+let quizQuestions = function() {
   if (questionIndex < quiz.length) {
     
     let quizH1 = document.createElement(`h1`);  
@@ -78,7 +78,7 @@ let quizDisplay = function() {
         questionIndex++;
         quizH1.innerHTML = ``;
         quizOl.innerHTML = ``;
-        quizDisplay();
+        quizQuestions();
       }
       if (event.target.className === `answer-false`) {
         alert(`Wrong!`);
@@ -86,7 +86,7 @@ let quizDisplay = function() {
         questionIndex++;
         quizH1.innerHTML = ``;
         quizOl.innerHTML = ``;
-        quizDisplay();
+        quizQuestions();
       }
     }); 
   }
