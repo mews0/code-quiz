@@ -1,9 +1,10 @@
 let quizScore = {
   current: 0,
+  initials: ``,
   // high score (in localStorage)
   calculate: function() {
     this.current = this.current - (75 - timeLeft);
-    alert(`Your score is ${this.current}.`);
+    return this.current;
     /* if (this.current > this.high) {
       this.high = this.current;
     } */
@@ -52,8 +53,8 @@ let quizStart = function() {
           console.log(timeLeft);
           if (timeLeft <= 0 || questionIndex === quiz.length) {
             clearInterval(timer, 1000);
-            alert(`All done!`)
-            quizScore.calculate();
+            alert(`All done! Your final score is ${quizScore.calculate()}`);
+            quizScore.initials = prompt(`Enter initials:`);
           }   
         },
         1000
