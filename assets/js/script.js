@@ -1,3 +1,14 @@
+let quizScore = {
+  current: 0,
+  // high score (in localStorage)
+  calculate: function() {
+    this.current = this.current - (75 - timeLeft);
+    alert(`Your score is ${this.current}.`);
+    /* if (this.current > this.high) {
+      this.high = this.current;
+    } */
+  }
+}
 let timeLeft = 75;
 let questionIndex = 0;
 const quiz = [
@@ -42,6 +53,7 @@ let quizStart = function() {
           if (timeLeft <= 0 || questionIndex === quiz.length) {
             clearInterval(timer, 1000);
             alert(`All done!`)
+            quizScore.calculate();
           }   
         },
         1000
@@ -75,6 +87,7 @@ let quizQuestions = function() {
     document.querySelector(`#answer-index-${questionIndex}`).addEventListener(`click`, function(event) {
       if (event.target.className === `answer-true`) {
         alert(`Correct!`);
+        quizScore.current += 20;
         questionIndex++;
         quizH1.innerHTML = ``;
         quizOl.innerHTML = ``;
@@ -82,6 +95,7 @@ let quizQuestions = function() {
       }
       if (event.target.className === `answer-false`) {
         alert(`Wrong!`);
+        quizScore.current -= 10;
         timeLeft -= 10;
         questionIndex++;
         quizH1.innerHTML = ``;
